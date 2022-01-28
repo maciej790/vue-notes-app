@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <button class="header__button">Create note</button>
+    <button class="header__button" @click="$emit('handleButtonOpen')">Create note</button>
     <h2 class="header__logo">Logo</h2>
   </header>
 </template>

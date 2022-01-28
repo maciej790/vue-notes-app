@@ -1,15 +1,18 @@
 <template>
   <div class="wrapper">
-    <AppHeader />
+    <ModalForm v-show="isSlide" @handleButtonClose="changeSlideState" />
+    <AppHeader @handleButtonOpen="changeSlideState" />
     <AppBanner />
     <CurrencyRatings />
   </div>
 </template>
 
 <script>
+import { ref } from 'vue';
 import AppHeader from './components/AppHeader.vue';
 import AppBanner from './components/AppBanner.vue';
 import CurrencyRatings from './components/CurrencyRatings.vue';
+import ModalForm from './components/ModalForm.vue';
 
 export default {
   name: 'App',
@@ -17,6 +20,20 @@ export default {
     AppHeader,
     AppBanner,
     CurrencyRatings,
+    ModalForm,
+  },
+
+  setup() {
+    const isSlide = ref(false);
+
+    const changeSlideState = () => {
+      isSlide.value = !isSlide.value;
+    };
+
+    return {
+      isSlide,
+      changeSlideState,
+    };
   },
 };
 </script>
