@@ -5,19 +5,27 @@
     </button>
     <form class="modal__form">
       <label for="title">Note title</label>
-      <input class="modal__title" type="text" placeholder="e.g. go work" name="title" />
+      <input
+        class="modal__title"
+        type="text"
+        placeholder="e.g. go work"
+        name="title"
+        v-model="noteTitle"
+      />
       <label for="description">Note description</label>
       <textarea
         class="modal__description"
         type="text"
         placeholder="e.g. go work"
         name="description"
+        v-model="noteDescription"
       />
       <label for="color">Note color</label>
-      <select class="modal__color" name="color">
+      <select class="modal__color" name="color" v-model="noteColor">
+        <option value="">Choose note color</option>
         <option value="green">Green</option>
-        <option value="red">Blue</option>
-        <option value="blue">Red</option>
+        <option value="blue">Blue</option>
+        <option value="red">Red</option>
       </select>
       <input
         class="modal__create"
@@ -29,7 +37,21 @@
   </div>
 </template>
 <script>
-export default {};
+import { reactive, toRefs } from 'vue';
+
+export default {
+  setup() {
+    const formData = reactive({
+      noteTitle: '',
+      noteDescription: '',
+      noteColor: '',
+    });
+
+    return {
+      ...toRefs(formData),
+    };
+  },
+};
 </script>
 <style lang="scss" scoped>
 @import "../utils/_variables.scss";
